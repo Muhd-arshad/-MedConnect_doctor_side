@@ -37,7 +37,8 @@ class ScreenProfile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  profileProvider.profilePhoto == null
+                  profileProvider.isEditing ==true ?
+                  profileProvider.doctorProfileModel!.doctorDetails.profilePhoto == null
                       ? const Center(
                           child: CircleAvatar(
                             backgroundImage: AssetImage(
@@ -47,12 +48,30 @@ class ScreenProfile extends StatelessWidget {
                         )
                       : Center(
                           child: CircleAvatar(
-                            backgroundImage: FileImage(
-                                File(profileProvider.profilePhoto!.path)),
+                            backgroundImage: NetworkImage(profileProvider.doctorProfileModel!.doctorDetails.profilePhoto!),
+                            // backgroundImage: FileImage(
+                            //     File(profileProvider.profilePhoto!.path)),
+
+                            radius: 80,
+                          ),
+                        ):
+                         profileProvider.doctorProfileModel!.doctorDetails.profilePhoto == null
+                      ? const Center(
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage(
+                                'assets/images/360_F_330332917_MO0x1tcYedbGxUM4wgATwyOkU7xY5wEI.jpg'),
+                            radius: 80,
+                          ),
+                        )
+                      : Center(
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(profileProvider.doctorProfileModel!.doctorDetails.profilePhoto!),
+                               
 
                             radius: 80,
                           ),
                         ),
+
                   profileProvider.isEditing == false ? height10 : height20,
                   profileProvider.isEditing == false
                       ? height10
@@ -121,6 +140,7 @@ class ScreenProfile extends StatelessWidget {
                           log(status.toString());
                           if(status == true){
                             profileProvider.loadingChange();
+                            profileProvider.profileEdit();
                             // ignore: use_build_context_synchronously
                             Navigator.push(context, MaterialPageRoute(builder: (context) =>const ScreenHome(),));
                           }
