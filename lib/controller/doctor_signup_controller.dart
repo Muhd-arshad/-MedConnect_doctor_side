@@ -8,9 +8,9 @@ class SignupProvider extends ChangeNotifier {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController confirmpasswordcontroller = TextEditingController();
-  final formGlobalKey = GlobalKey<FormState>();
+  final formGlobalKey2 = GlobalKey<FormState>();
   Future<bool> docotorsignup(BuildContext context) async {
-    if (formGlobalKey.currentState!.validate()) {
+    if (formGlobalKey2.currentState!.validate()) {
       bool status = await signup(
           firstnamecontroller.text,
           secondnamecontroller.text,

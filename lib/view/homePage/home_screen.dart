@@ -1,3 +1,6 @@
+import 'package:doctor_side_flutter/controller/dashbord_get_controller.dart';
+import 'package:doctor_side_flutter/controller/department_get_controller.dart';
+import 'package:doctor_side_flutter/controller/doctor_profile_controller.dart';
 import 'package:doctor_side_flutter/util/constants/padding.dart';
 import 'package:doctor_side_flutter/util/constants/sizedbox.dart';
 import 'package:doctor_side_flutter/view/apointments/screen_apoinments.dart';
@@ -9,6 +12,7 @@ import 'package:doctor_side_flutter/view/uploaddetails/screenupload.dart';
 import 'package:doctor_side_flutter/view/widgets/cardwidget.dart';
 import 'package:doctor_side_flutter/view/widgets/primarywidget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});
@@ -37,7 +41,9 @@ class ScreenHome extends StatelessWidget {
                       height: 10,
                       text: 'DashBoard',
                       padding: const EdgeInsets.all(10),
-                      onTap: () {
+                      onTap: () async{
+                       await Provider.of<DashBoardProvder>(context,listen: false).getDashBoard();
+                        // ignore: use_build_context_synchronously
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -81,7 +87,11 @@ class ScreenHome extends StatelessWidget {
                       height: 10,
                       text: 'Profile',
                       padding: const EdgeInsets.all(10),
-                      onTap: () {
+                      onTap: () async{
+                       await Provider.of<DoctorProfileProvider>(context,listen: false).getProfile();
+                       // ignore: use_build_context_synchronously
+                       Provider.of<DoctorProfileProvider>(context,listen: false).controller();
+                        // ignore: use_build_context_synchronously
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -96,13 +106,16 @@ class ScreenHome extends StatelessWidget {
                       height: 10,
                       text: 'Chat',
                       padding: const EdgeInsets.all(10),
-                      onTap: () {
+                      onTap: () async{
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const ScreenChat(),
                           ),
+                          
                         );
+                       
+                        
                       },
                     ),
                     CardWidget(
@@ -111,13 +124,22 @@ class ScreenHome extends StatelessWidget {
                         height: 10,
                         text: 'Upload Details',
                         padding: const EdgeInsets.all(10),
-                        onTap: () {
+                        onTap: () async{
+                            await Provider.of<DepartmentProvider>(context,listen: false).getDepartment();
+                            // ignore: use_build_context_synchronously
+                            Provider.of<DepartmentProvider>(context,listen: false)
+                            .dropdownValue =
+                        // ignore: use_build_context_synchronously
+                        Provider.of<DepartmentProvider>(context, listen: false)
+                            .list[0];
+                          // ignore: use_build_context_synchronously
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const ScreenUploadDetails(),
                             ),
                           );
+                        
                         }),
                   ],
                 ),

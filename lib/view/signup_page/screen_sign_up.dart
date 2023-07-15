@@ -22,7 +22,7 @@ class ScreenSignUp extends StatelessWidget {
           child: Consumer<SignupProvider>(
               builder: (context, signupProvider, child) {
             return Form(
-              key: signupProvider.formGlobalKey,
+              key: signupProvider.formGlobalKey2,
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

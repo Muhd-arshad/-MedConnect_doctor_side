@@ -4,7 +4,7 @@ import 'package:doctor_side_flutter/services/otp_services_api.dart';
 import 'package:doctor_side_flutter/util/constants/color.dart';
 import 'package:doctor_side_flutter/util/constants/padding.dart';
 import 'package:doctor_side_flutter/util/constants/sizedbox.dart';
-import 'package:doctor_side_flutter/view/homePage/home_screen.dart';
+import 'package:doctor_side_flutter/view/loginPage/loginpage.dart';
 import 'package:doctor_side_flutter/view/widgets/buttonwidget.dart';
 import 'package:doctor_side_flutter/view/widgets/customtextwidget.dart';
 import 'package:doctor_side_flutter/view/widgets/primarywidget.dart';
@@ -94,7 +94,7 @@ class ScreenOtpPage extends StatelessWidget {
                          Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ScreenHome(),
+                            builder: (context) => const LoginScreen(),
                           ),
                         );
                         }

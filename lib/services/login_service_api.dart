@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 import '../util/constants/error_handling.dart';
 import '../util/constants/api_configuration.dart';
-
+ const FlutterSecureStorage secureStorage = FlutterSecureStorage();
 Future<dynamic> loginToHome(
   String mail,
   String password,
@@ -36,8 +36,10 @@ try{
   });
   if(response.statusCode == 200){
     log('Login sucsess!');
-     const FlutterSecureStorage secureStorage = FlutterSecureStorage();
-   secureStorage.write(key: 'token', value: jsonDecode(response.body)['token']);
+      Map<String, dynamic> jsonResponse = json.decode(response.body);
+      String token = jsonResponse['token'];
+      log(token);
+      secureStorage.write(key: 'token', value: token);
    log(response.body);
     return true;
   }else{

@@ -14,7 +14,10 @@ class CardWidget extends StatelessWidget {
     super.key,
     required this.image,
     required this.text,
-    this.count, this.height,  this.padding=EdgeInsets.zero,  this.onTap,
+    this.count,
+    this.height,
+    this.padding = EdgeInsets.zero,
+    this.onTap,
   });
 
   @override
@@ -27,18 +30,19 @@ class CardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
         child: Padding(
-          padding:  padding,
+          padding: padding,
           child: Column(
             children: [
               CircleAvatar(radius: 45, backgroundImage: AssetImage(image)),
               //  height10,
-              SizedBox(height: height,),
+              SizedBox(
+                height: height,
+              ),
               TextWidget(
                 text: text,
                 fontWeight: FontWeight.bold,
                 size: 15,
               ),
-              //  height10,
               count == null
                   ? const SizedBox()
                   : TextWidget(
