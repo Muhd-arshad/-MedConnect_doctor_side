@@ -43,8 +43,10 @@ class Tilewidget extends StatelessWidget {
             ),
           ],
         ),
-        trailing: TextWidget(
-          text: date,
+        trailing: Expanded(
+          child: TextWidget(
+            text: time,
+          ),
         ),
       ),
     );

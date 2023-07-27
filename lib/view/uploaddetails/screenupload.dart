@@ -96,6 +96,7 @@ class ScreenUploadDetails extends StatelessWidget {
                     children: [
                       ElevatedButton.icon(
                         onPressed: () {
+                          doctorUploadDetails.isImagePicker(true);
                           doctorUploadDetails.getIdPhoto();
                         },
                         icon: const Icon(Icons.upload),
@@ -129,7 +130,7 @@ class ScreenUploadDetails extends StatelessWidget {
                   ButtonWidget(
                       text: 'Upload',
                       onPressed: () async {
-                        log('ramees');
+                      
 
                         bool status = await doctorUploadDetails
                             .doctorUploadDetails(context);

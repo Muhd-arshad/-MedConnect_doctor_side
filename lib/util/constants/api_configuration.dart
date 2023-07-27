@@ -14,5 +14,9 @@ class Apiconfiguration{
   static String profile ='api/doctor/doctorDetails';
   static String updateProfileDetails='api/doctor/updateProfileDetails';
   static String profilePhoto='api/doctor/updateProfile';
+  static String chatableUser ='api/doctor/getChattableUsers';
+  static String sendMsg ='api/message/addMessageFromDoctor';
+  static String getmsg ='api/message/getMessagesForDoctor';
+ // static String getbookedApoinments ='api/doctor/getBookedAppointments';
 
 }

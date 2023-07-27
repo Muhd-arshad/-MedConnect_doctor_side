@@ -1,6 +1,8 @@
+import 'package:doctor_side_flutter/controller/chatable_user_get_controller.dart';
 import 'package:doctor_side_flutter/controller/dashbord_get_controller.dart';
 import 'package:doctor_side_flutter/controller/department_get_controller.dart';
 import 'package:doctor_side_flutter/controller/doctor_profile_controller.dart';
+import 'package:doctor_side_flutter/controller/getapointsments_controller.dart';
 import 'package:doctor_side_flutter/util/constants/padding.dart';
 import 'package:doctor_side_flutter/util/constants/sizedbox.dart';
 import 'package:doctor_side_flutter/view/apointments/screen_apoinments.dart';
@@ -72,7 +74,9 @@ class ScreenHome extends StatelessWidget {
                       height: 10,
                       text: 'Apoinments',
                       padding: const EdgeInsets.all(10),
-                      onTap: () {
+                      onTap: ()async {
+                       await Provider.of<GetbookedProvider>(context,listen: false).getbookedApointment();
+                        // ignore: use_build_context_synchronously
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -107,6 +111,10 @@ class ScreenHome extends StatelessWidget {
                       text: 'Chat',
                       padding: const EdgeInsets.all(10),
                       onTap: () async{
+                        await Provider.of<ChatableUserGetProvider>(context,listen: false).getChatableUser();
+                        // ignore: use_build_context_synchronously
+                        await Provider.of<DoctorProfileProvider>(context,listen: false).getProfile();
+                        // ignore: use_build_context_synchronously
                         Navigator.push(
                           context,
                           MaterialPageRoute(

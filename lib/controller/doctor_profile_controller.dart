@@ -19,7 +19,7 @@ class DoctorProfileProvider extends ChangeNotifier {
   File? profilePhoto;
   String? profilepath;
   GlobalKey<FormState> formKey2 = GlobalKey();
-String? imageurl;
+  String? imageurl;
   TextEditingController namecontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController numbercontroller = TextEditingController();
@@ -71,15 +71,14 @@ String? imageurl;
 
   Future<void> profilePhot() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-
     if (image == null) {
       return;
     } else {
       final phototemp = File(image.path);
       profilePhoto = phototemp;
-       profilepath =await profileCloudinery(profilePhoto!.path);
-       doctorProfileModel!.doctorDetails.profilePhoto = profilepath.toString();
-       log(profilepath.toString());
+      profilepath = await profileCloudinery(profilePhoto!.path);
+      doctorProfileModel!.doctorDetails.profilePhoto = profilepath.toString();
+      log(profilepath.toString());
       notifyListeners();
     }
     notifyListeners();
@@ -91,7 +90,7 @@ String? imageurl;
     log(profilePhoto.toString());
     log(doctorProfileModel!.doctorDetails.id.toString());
 
-doctorProfileModel!.doctorDetails.profilePhoto = profilepath.toString();    
+    doctorProfileModel!.doctorDetails.profilePhoto = profilepath.toString();
     doctorProfileModel!.doctorDetails.firstName = namecontroller.text;
     doctorProfileModel!.doctorDetails.email = emailcontroller.text;
     doctorProfileModel!.doctorDetails.experience =
@@ -104,31 +103,29 @@ doctorProfileModel!.doctorDetails.profilePhoto = profilepath.toString();
     }
   }
 
-Future<dynamic> profileCloudinery(String imagePath) async {
-  final cloudinary = Cloudinary.signedConfig(
-    apiKey: '331149413215856',
-    apiSecret: 'DuAkn5qC3Rr2zBWv1ZVjDGHDVA8',
-    cloudName: 'dupsc4cu4',
-  );
-  
-  CloudinaryResponse response = await cloudinary.upload(
-    file: imagePath,
-    fileBytes: File(imagePath).readAsBytesSync(),
-    resourceType: CloudinaryResourceType.image,
-  );
-  
-  if (response.statusCode == 200) {
-    log('cloudinery image added');
-    imageurl = response.secureUrl.toString();
-    notifyListeners();
-    return imageurl;
-    
+  Future<dynamic> profileCloudinery(String imagePath) async {
+    final cloudinary = Cloudinary.signedConfig(
+      apiKey: '331149413215856',
+      apiSecret: 'DuAkn5qC3Rr2zBWv1ZVjDGHDVA8',
+      cloudName: 'dupsc4cu4',
+    );
+
+    CloudinaryResponse response = await cloudinary.upload(
+      file: imagePath,
+      fileBytes: File(imagePath).readAsBytesSync(),
+      resourceType: CloudinaryResourceType.image,
+    );
+
+    if (response.statusCode == 200) {
+      log('cloudinery image added');
+      imageurl = response.secureUrl.toString();
+      notifyListeners();
+      return imageurl;
+    }
   }
-  
-}
-Future<void> profileEdit()async{
-  log('enterd');
-  editProfilePhoto(profilepath!);
-}
+
+  Future<void> profileEdit() async {
+    log('enterd');
+    editProfilePhoto(profilepath!);
   }
-  
+}

@@ -1,5 +1,8 @@
+import 'package:doctor_side_flutter/controller/chatable_user_get_controller.dart';
 import 'package:doctor_side_flutter/controller/doctor_login_controller.dart';
 import 'package:doctor_side_flutter/controller/doctor_profile_controller.dart';
+import 'package:doctor_side_flutter/controller/getapointsments_controller.dart';
+import 'package:doctor_side_flutter/controller/message_user_post_controller.dart';
 import 'package:doctor_side_flutter/view/loginPage/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -43,6 +46,16 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => DoctorProfileProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => GetbookedProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ChatableUserGetProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => GetUserMessageProvider(),
+        ),
+        
       ],
       child: MaterialApp(
         theme: ThemeData(

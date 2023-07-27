@@ -19,6 +19,15 @@ class UploadDetailsProvider extends ChangeNotifier {
   String? idPhotoPath;
   String? certificatephoto;
   final formGlobalKey1 = GlobalKey<FormState>();
+  bool isImagePickerActive = false;
+
+
+  // bool get isImagePickerActive => isImagePickerActive;
+
+   isImagePicker(bool value) {
+    isImagePickerActive = value;
+    notifyListeners();
+  }
 
   Future<void> getIdPhoto() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -28,8 +37,10 @@ class UploadDetailsProvider extends ChangeNotifier {
       final photoTemp = File(image.path);
       idphoto = photoTemp;
       log(idphoto.toString());
-       idPhotoPath = await uploadImage(idphoto!.path);
+      idPhotoPath = await uploadImage(idphoto!.path);
       log(idPhotoPath.toString());
+      isImagePicker(false);
+      notifyListeners();
     }
     notifyListeners();
   }
@@ -42,24 +53,29 @@ class UploadDetailsProvider extends ChangeNotifier {
       final photoTemp = File(cimage.path);
       certificateImage = photoTemp;
       log(certificateImage.toString());
-     certificatephoto =await uploadImage(certificateImage!.path);
-     log(certificatephoto.toString());
-     
+      certificatephoto = await uploadImage(certificateImage!.path);
+      log(certificatephoto.toString());
     }
     notifyListeners();
   }
 
   Future<bool> doctorUploadDetails(BuildContext context) async {
     if (formGlobalKey1.currentState!.validate()) {
+      String dpt =Provider.of<DepartmentProvider>(context, listen: false)
+          .dropdownValue!;
+      log('dpt=====$dpt');
       bool status = await uploadDetails(
           int.parse(idnumberController.text),
           qualificationController.text,
-          Provider.of<DepartmentProvider>(context,listen: false).dropdownValue!,
-         int.parse(feeController.text) ,
+          dpt,
+          // Provider.of<DepartmentProvider>(context,)
+          //     .dropdownValue!,
+          int.parse(feeController.text),
           int.parse(feeController.text),
           idPhotoPath!,
           certificatephoto!,
           context);
+            log('dpt=====$dpt');
       if (status == true) {
         log(status.toString());
         return true;

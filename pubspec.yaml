@@ -43,6 +43,7 @@ dependencies:
   cloudinary_public: ^0.21.0
   cloudinary:
   intl: ^0.18.1
+  socket_io_client: ^2.0.2
 
 dev_dependencies:
   flutter_test:

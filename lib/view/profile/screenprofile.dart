@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:doctor_side_flutter/controller/doctor_profile_controller.dart';
 import 'package:doctor_side_flutter/util/constants/padding.dart';
 import 'package:doctor_side_flutter/util/constants/sizedbox.dart';

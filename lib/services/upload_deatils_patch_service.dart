@@ -18,6 +18,7 @@ Future<dynamic> uploadDetails(
   String certificateImage,
   BuildContext context,
 ) async {
+  log('department ==== $department');
    String url = Apiconfiguration.baseurl + Apiconfiguration.uploadDetails;
 // String url ='http://10.4.3.105:8080/api/doctor/addDoctorDetails';
 
@@ -25,7 +26,7 @@ Future<dynamic> uploadDetails(
     "value": {
     "idNumber": idnumber,
     "qualification": qualification,
-    "department": department,
+    "departmentName": department,
     "fee": fee,
     "experience": experience
   },
