@@ -2,6 +2,7 @@ import 'package:doctor_side_flutter/controller/chatable_user_get_controller.dart
 import 'package:doctor_side_flutter/controller/doctor_login_controller.dart';
 import 'package:doctor_side_flutter/controller/doctor_profile_controller.dart';
 import 'package:doctor_side_flutter/controller/getapointsments_controller.dart';
+import 'package:doctor_side_flutter/controller/loading_controller.dart';
 import 'package:doctor_side_flutter/controller/message_user_post_controller.dart';
 import 'package:doctor_side_flutter/view/loginPage/loginpage.dart';
 import 'package:flutter/material.dart';
@@ -55,9 +56,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => GetUserMessageProvider(),
         ),
-        
+        ChangeNotifierProvider(
+          create: (context) => LoadingController(),
+        ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,

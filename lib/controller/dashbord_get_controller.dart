@@ -10,8 +10,11 @@ import '../util/constants/storage.dart';
 class DashBoardProvder extends ChangeNotifier{
   DoctorDashboardModel? dashboardModel;
   List<String> list = [''];
+  bool isloading =false;
+
   Future<dynamic> getDashBoard() async {
- 
+ isloading =true;
+ notifyListeners();
   String url = Apiconfiguration.baseurl + Apiconfiguration.dashBoard;
   dynamic key = await readToken();
   final headers = {
@@ -28,11 +31,16 @@ class DashBoardProvder extends ChangeNotifier{
     log('fetching');
     Map<String,dynamic> data =jsonDecode(response.body) as Map<String,dynamic>;
     dashboardModel = DoctorDashboardModel.fromJson(data);
+    isloading =false;
     notifyListeners();
     return dashboardModel;
   }else{
+     isloading=false;
+  notifyListeners();
    log('Request failed with status code ${response.statusCode}');
   }
+  isloading=false;
+  notifyListeners();
 }
   
 }

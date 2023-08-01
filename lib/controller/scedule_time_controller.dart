@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
@@ -11,7 +10,7 @@ class ScheduletimeProvider extends ChangeNotifier {
   TextEditingController startTimecontroller = TextEditingController();
   TextEditingController endTimecontroller = TextEditingController();
   TextEditingController sloatcontroller = TextEditingController();
-  final formGlobalKey3 = GlobalKey<FormState>();
+  final GlobalKey<FormState> formGlobalKey3 = GlobalKey<FormState>();
   DateTime? selecteddate;
 
 // bool isloading =false;
@@ -22,10 +21,13 @@ class ScheduletimeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool? isloading = false;
   Future<dynamic> timeSchedule(BuildContext context) async {
+    isloading = true;
+    notifyListeners();
     if (formGlobalKey3.currentState!.validate()) {
       log(selecteddate.toString());
-     
+
       bool status = await schudeuleTime(
           selecteddate.toString(),
           startTimecontroller.text,
@@ -33,14 +35,16 @@ class ScheduletimeProvider extends ChangeNotifier {
           sloatcontroller.text,
           context);
       if (status == true) {
+        isloading = false;
+        notifyListeners();
         return true;
-
       } else {
+        isloading = false;
+        notifyListeners();
         return false;
       }
-
-     
     }
-     notifyListeners();
+    isloading = false;
+    notifyListeners();
   }
 }

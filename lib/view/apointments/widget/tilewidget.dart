@@ -8,12 +8,13 @@ class Tilewidget extends StatelessWidget {
   final String slnumber;
   final String date;
   final String time;
+  final Function()? ontap;
   const Tilewidget({
     super.key,
     required this.name,
     required this.slnumber,
     required this.date,
-    required this.time,
+    required this.time, this.ontap,
   });
 
   @override
@@ -24,6 +25,7 @@ class Tilewidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListTile(
+        onTap: ontap,
         minLeadingWidth: 0,
         leading: TextWidget(
           text: slnumber,
@@ -31,7 +33,8 @@ class Tilewidget extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Expanded(
+            SizedBox(
+              width: 70,
               child: TextWidget(
                 text: name,
                 fontWeight: FontWeight.bold,
@@ -43,9 +46,11 @@ class Tilewidget extends StatelessWidget {
             ),
           ],
         ),
-        trailing: Expanded(
+        trailing: SizedBox(
+          width: 45,
           child: TextWidget(
             text: time,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ),

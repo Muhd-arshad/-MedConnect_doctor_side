@@ -24,7 +24,7 @@ class DoctorProfileProvider extends ChangeNotifier {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController numbercontroller = TextEditingController();
   TextEditingController experiancecontroller = TextEditingController();
-
+  bool isloading = false;
   Future<dynamic> getProfile() async {
     String key = await readToken();
     String url = Apiconfiguration.baseurl + Apiconfiguration.profile;
@@ -85,6 +85,8 @@ class DoctorProfileProvider extends ChangeNotifier {
   }
 
   Future<dynamic> updateProfile() async {
+    isloading = true;
+    notifyListeners();
     bool status = await editProfile(namecontroller.text, emailcontroller.text,
         int.parse(experiancecontroller.text), int.parse(numbercontroller.text));
     log(profilePhoto.toString());
@@ -97,8 +99,12 @@ class DoctorProfileProvider extends ChangeNotifier {
         int.parse(experiancecontroller.text);
     notifyListeners();
     if (status == true) {
+      isloading = false;
+      notifyListeners();
       return true;
     } else {
+      isloading = false;
+      notifyListeners();
       return false;
     }
   }

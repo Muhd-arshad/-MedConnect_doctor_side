@@ -46,7 +46,7 @@ class ScreenDashboard extends StatelessWidget {
                         CardWidget(
                           image:
                               'assets/images/360_F_330332917_MO0x1tcYedbGxUM4wgATwyOkU7xY5wEI.jpg',
-                          text: 'Upcoming Appointment',
+                          text: 'Booked Appointment',
                           count: dashboardProvider.dashboardModel!.bookedAppointments.toString(),
                         ),
                         CardWidget(

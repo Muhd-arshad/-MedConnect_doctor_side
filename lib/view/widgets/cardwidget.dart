@@ -33,7 +33,7 @@ class CardWidget extends StatelessWidget {
           padding: padding,
           child: Column(
             children: [
-              CircleAvatar(radius: 45, backgroundImage: AssetImage(image)),
+              CircleAvatar(radius: 45, backgroundImage: AssetImage(image),backgroundColor: cwhite,),
               //  height10,
               SizedBox(
                 height: height,

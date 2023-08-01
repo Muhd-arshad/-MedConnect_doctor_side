@@ -34,9 +34,10 @@ class ScreenShuduleTime extends StatelessWidget {
                   children: [
                     height10,
                     const CircleAvatarWidget(
-                        image:
-                            'assets/images/360_F_330332917_MO0x1tcYedbGxUM4wgATwyOkU7xY5wEI.jpg',
-                        size: 80),
+                      image:
+                          'assets/images/medical-appointment-time-icon-on-white-vector.jpg',
+                      size: 80,
+                    ),
                     height50,
                     Container(
                       height: 65,
@@ -50,9 +51,10 @@ class ScreenShuduleTime extends StatelessWidget {
                           final selectedDateTemp = await showDatePicker(
                             context: context,
                             initialDate: DateTime.now(),
-                            firstDate: DateTime.now()
-                                .subtract(const Duration(days: 60)),
-                            lastDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            // .add(const Duration(days: 60)),
+                            lastDate:
+                                DateTime.now().add(const Duration(days: 60)),
                           );
                           if (selectedDateTemp == null) {
                             return;
@@ -68,7 +70,7 @@ class ScreenShuduleTime extends StatelessWidget {
                         label: Text(
                           schedultimeProvider.selectedDate == null
                               ? "select date"
-                              : DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+                              : DateFormat("yyyy-MM-dd")
                                   .format(schedultimeProvider.selectedDate!),
                           style: const TextStyle(
                               color: Colors.black, fontSize: 15),
@@ -88,25 +90,30 @@ class ScreenShuduleTime extends StatelessWidget {
                         controller: schedultimeProvider.sloatcontroller,
                         labelText: 'Slot'),
                     height20,
-                    ButtonWidget(
-                        text: 'Upload',
-                        onPressed: () async {
-                          bool status =
-                              await schedultimeProvider.timeSchedule(context);
-                          if (status == true) {
-                           
-                              
+                    schedultimeProvider.isloading == true
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : ButtonWidget(
+                            text: 'Upload',
+                            onPressed: () async {
+                              bool status = await schedultimeProvider
+                                  .timeSchedule(context);
+                              if (status == true) {
                                 // ignore: use_build_context_synchronously
-                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const ScreenHome(),
-                                    ),
-                                  );
-                          }
-                        },
-                        height: 50,
-                        width: 150),
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ScreenHome(),
+                                  ),
+                                );
+                              } else {
+                                // ignore: use_build_context_synchronously
+                                Navigator.pop(context);
+                              }
+                            },
+                            height: 50,
+                            width: 150),
                   ],
                 ),
               );

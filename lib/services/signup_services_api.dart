@@ -40,7 +40,7 @@ Future<dynamic> signup(
         response: response,
         context: context,
         onSucces: () {
-          showSnackBar(context, 'SucssesFull');
+          showSnackBar(context, 'Successfull!');
         });
 
     if (response.statusCode == 200) {

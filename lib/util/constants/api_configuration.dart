@@ -17,6 +17,8 @@ class Apiconfiguration{
   static String chatableUser ='api/doctor/getChattableUsers';
   static String sendMsg ='api/message/addMessageFromDoctor';
   static String getmsg ='api/message/getMessagesForDoctor';
+  static String visited = 'api/doctor/patientVisited';
+  static String cancel='api/doctor/cancelAppointment';
  // static String getbookedApoinments ='api/doctor/getBookedAppointments';
 
 }

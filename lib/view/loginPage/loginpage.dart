@@ -49,7 +49,9 @@ class LoginScreen extends StatelessWidget {
                         controller: doctorloginProvider.passwordcontroller,
                         labelText: 'Enter Your Password'),
                     height30,
+                    doctorloginProvider.isloading == true ?const Center(child: CircularProgressIndicator(),):
                     ButtonWidget(text: 'Login',height: 60,width:250, onPressed: ()async {
+                      doctorloginProvider.isloading = true;
                      bool status = await doctorloginProvider.loginTohome(context);
                      if(status == true){
                       // ignore: use_build_context_synchronously
@@ -59,6 +61,7 @@ class LoginScreen extends StatelessWidget {
                                 builder: (context) => const ScreenHome(),
                               ),
                             );
+                            doctorloginProvider.clearField();
                      }
                      
                     },

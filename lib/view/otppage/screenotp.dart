@@ -91,7 +91,7 @@ class ScreenOtpPage extends StatelessWidget {
                         if(status == true){
                           log(status.toString());
                          // ignore: use_build_context_synchronously
-                         Navigator.push(
+                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const LoginScreen(),

@@ -70,6 +70,7 @@ class GetUserMessageProvider extends ChangeNotifier {
   }
    void messageClear(){
     msgController.clear();
+    _message ='';
     notifyListeners();
   }
     late IO.Socket socket;
@@ -111,6 +112,16 @@ String serverUrl =Apiconfiguration.baseurl;
     }
     notifyListeners();
   }
+  String _message = '';
+
+  String get message => _message;
+
+  void setMessage(String message) {
+    _message = message;
+    notifyListeners(); // Notify listeners about the change
+  }
+
+  bool get isMessageEmpty => _message.isEmpty;
   @override
   void dispose() {
     socket.dispose();

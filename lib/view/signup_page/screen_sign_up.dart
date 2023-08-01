@@ -64,23 +64,29 @@ class ScreenSignUp extends StatelessWidget {
                       labelText: 'Conform Password',
                     ),
                     height30,
-                    ButtonWidget(
-                        text: 'Sign Up',
-                        onPressed: () async {
-                          bool status =
-                              await signupProvider.docotorsignup(context);
-                          if (status == true) {
-                            // ignore: use_build_context_synchronously
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ScreenOtpPage(),
-                              ),
-                            );
-                          }
-                        },
-                        height: 50,
-                        width: 160)
+                    signupProvider.isloading == true
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : ButtonWidget(
+                            text: 'Sign Up',
+                            onPressed: () async {
+                              signupProvider.isloading = true;
+                              bool status =
+                                  await signupProvider.docotorsignup(context);
+                              if (status == true) {
+                                // ignore: use_build_context_synchronously
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ScreenOtpPage(),
+                                    ),
+                                    (route) => false);
+                              }
+                            },
+                            height: 50,
+                            width: 160)
                   ],
                 ),
               ),

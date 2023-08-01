@@ -97,6 +97,9 @@ class ScreenMessage extends StatelessWidget {
                           elevation: 4,
                           shadowColor: cBlack,
                           child: TextField(
+                             onChanged: (value) {
+                              getUserMessageProvider.setMessage(value);
+                            },
                             controller: getUserMessageProvider.msgController,
                             decoration: InputDecoration(
                               hintText: 'Type Messages',
@@ -106,7 +109,8 @@ class ScreenMessage extends StatelessWidget {
                               ),
                               fillColor: cwhite,
                               filled: true,
-                              suffixIcon: IconButton(
+                              suffixIcon: getUserMessageProvider.isMessageEmpty ? null :
+                              IconButton(
                                 onPressed: () async {
                                 getUserMessageProvider
                                       .sendMessage(

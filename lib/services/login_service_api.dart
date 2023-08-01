@@ -32,7 +32,7 @@ try{
   );
   // ignore: use_build_context_synchronously
   httpErrorHandler(response: response, context: context, onSucces: (){
-    showSnackBar(context,'Sucessful');
+    showSnackBar(context,'Login Success!');
   });
   if(response.statusCode == 200){
     log('Login sucsess!');
